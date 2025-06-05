@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <base target="_self">
+    <style>
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Environmental Conservation Community</h1>
+        
+        <!-- Option 1: Simple Email Link -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold mb-4">Option 1: Direct Email</h2>
+            <p class="mb-4">Click below to send us an email directly:</p>
+            <a href="mailto:joransjoram@gmail.com?subject=Joining%20the%20Community&body=Hello,%0D%0A%0D%0AI%20would%20like%20to%20join%20your%20environmental%20conservation%20community.%0D%0A%0D%0AMy%20name:%0D%0AMy%20interests:%0D%0A%0D%0ARegards," 
+               class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-all">
+               <i class="fas fa-envelope mr-2"></i> Email Us Directly
+            </a>
+        </div>
+        
+        <!-- Option 2: Form Popup -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Option 2: Fill Out Our Form</h2>
+            <p class="mb-4">Click below to open a form to join our community:</p>
+            <button onclick="openForm()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all">
+                <i class="fas fa-edit mr-2"></i> Open Join Form
+            </button>
+        </div>
+        
+        <!-- Form Popup Container -->
+        <div id="formContainer" class="form-container">
+            <div class="form-content">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Join Our Community</h2>
+                    <button onclick="closeForm()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="joinForm" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="name" name="name" required 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="email" name="email" required 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                    </div>
+                    
+                    <div>
+                        <label for="interest" class="block text-sm font-medium text-gray-700">Areas of Interest</label>
+                        <select id="interest" name="interest" 
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                            <option value="recycling">Recycling Programs</option>
+                            <option value="tree-planting">Tree Planting</option>
+                            <option value="education">Environmental Education</option>
+                            <option value="cleanups">Community Cleanups</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Why do you want to join?</label>
+                        <textarea id="message" name="message" rows="3" 
+                                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeForm()" 
+                                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                            Cancel
+                        </button>
+                        <button type="button" onclick="submitForm()" 
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p>CREATED BY SSENYONGA JORAM S.4B</p>
+    </footer>
+
+    <script>
+        // Form handling functions
+        function openForm() {
+            document.getElementById('formContainer').style.display = 'flex';
+        }
+        
+        function closeForm() {
+            document.getElementById('formContainer').style.display = 'none';
+        }
+        
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const interest = document.getElementById('interest').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate form
+            if (!name || !email) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Create mailto link with form data
+            const subject = `Community Join Request from ${name}`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AInterest: ${interest}%0D%0AMessage: ${message}`;
+            
+            window.location.href = `mailto:joransjoram@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Close the form and optionally reset it
+            closeForm();
+            document.getElementById('joinForm').reset();
+            
+            // Optional: Show confirmation message
+            alert('Thank you! Your email client should open with your message ready to send.');
+        }
+        
+        // Prevent default anchor behavior
+        document.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
